@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'app_colors.dart';
 import 'constants.dart';
@@ -10,13 +11,14 @@ class TextFormWidget extends StatelessWidget {
     this.obscureText = false,
     this.validate,
     required this.title,
+    this.inputFormatter,
   });
 
   final String title;
   final TextEditingController controller;
   final bool obscureText;
   final String? Function(String?)? validate;
-
+  final List<TextInputFormatter>? inputFormatter;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -31,6 +33,7 @@ class TextFormWidget extends StatelessWidget {
           controller: controller,
           cursorColor: AppColors.appBlue,
           validator: validate,
+          inputFormatters: inputFormatter,
           decoration: InputDecoration(
             contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
             filled: true,
@@ -43,6 +46,18 @@ class TextFormWidget extends StatelessWidget {
             ),
             enabledBorder: OutlineInputBorder(
                 borderSide:  BorderSide.none,
+                borderRadius: BorderRadius.circular(26)
+            ),
+            errorBorder: OutlineInputBorder(
+                borderSide: const BorderSide(
+                    color: Colors.redAccent
+                ),
+                borderRadius: BorderRadius.circular(26)
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+                borderSide:  BorderSide(
+                    color: Colors.red.shade900
+                ),
                 borderRadius: BorderRadius.circular(26)
             ),
           ),

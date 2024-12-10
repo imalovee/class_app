@@ -1,6 +1,7 @@
 import 'package:class_app/shared/custom_button.dart';
 import 'package:class_app/shared/textform_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../shared/app_colors.dart';
@@ -22,6 +23,8 @@ class _SignupScreenState extends State<SignupScreen> {
 
   final _formKey = GlobalKey<FormState>();
 
+  List? errorMessage;
+
   @override
   void dispose(){
     super.dispose();
@@ -29,6 +32,42 @@ class _SignupScreenState extends State<SignupScreen> {
   _phoneController.dispose();
   _fullnameController.dispose();
   _passwordController.dispose();
+
+  }
+
+  String? passwordValidator(String? input){
+    List _errors = [];
+    final smallLet = RegExp(r'[a-z]');
+    final capitalLet = RegExp(r'[A-Z]');
+    final numbers = RegExp(r'[0-9]');
+    final specialChars = RegExp(r'[!#$%&*+-/=?]');
+
+    if(!smallLet.hasMatch(input ?? "")){
+      _errors.add('password must contain small letters');
+    }
+    if(!capitalLet.hasMatch(input ?? "")){
+      _errors.add('password must contain capital letters');
+    }
+    if(!numbers.hasMatch(input ?? "")){
+      _errors.add('password must contain digits');
+    }
+    if(!specialChars.hasMatch(input ?? "")){
+      _errors.add('password must contain one special Characters');
+    }
+    if((input?? "").length < 6){
+      _errors.add('password must be longer than 6');
+    }
+    errorMessage = null;
+    if(_errors.isEmpty){
+      setState(() {
+      });
+      return null;
+    }else{
+      errorMessage = _errors;
+      setState(() {
+      });
+      return '';
+    }
 
   }
 
@@ -62,32 +101,68 @@ class _SignupScreenState extends State<SignupScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 36,),
+                const SizedBox(height: 36,),
                 Text('Create Account Now!',
                 style:  jockeyTextStyle.copyWith(
                     color: AppColors.white,
                     fontSize: 30,
                     fontWeight: FontWeight.w500
                 ),),
-                SizedBox(height: 46,),
+                const SizedBox(height: 46,),
                 TextFormWidget(
                     controller: _fullnameController,
-                    title: 'Full Name'),
-                SizedBox(height: 26,),
+                    title: 'Full Name',
+                  inputFormatter: [
+                    FilteringTextInputFormatter.deny('r[]')
+                  ],
+                ),
+                const SizedBox(height: 26,),
                 TextFormWidget(
+                  validate: (input){
+                    if(!emailRegex.hasMatch(input!)){
+                      return 'Enter valid email address';
+                    }
+                  },
+                    inputFormatter: [
+                      FilteringTextInputFormatter.deny('r[]')
+                    ],
                     controller: _emailController,
                     title: 'Email'),
-                SizedBox(height: 26,),
+                const SizedBox(height: 26,),
                 TextFormWidget(
+                  validate: (value){
+                    return passwordValidator(value);
+                  },
                     controller: _passwordController,
                     title: 'Password'),
-                SizedBox(height: 26,),
+                if(errorMessage != null)
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: List<Widget>.from((errorMessage ?? []).map((e){
+                      return Text(e, style: const TextStyle(
+                          color: Colors.red,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 10
+                      ),);
+                    }))
+                  ),
+                const SizedBox(height: 36,),
                 TextFormWidget(
+                  inputFormatter: [
+                    FilteringTextInputFormatter.digitsOnly,
+                    FilteringTextInputFormatter.deny('r[]'),
+                  ],
                     controller: _phoneController,
                     title: 'Phone No'),
                 const SizedBox(height: 36,),
-                CustomButton(
-                    buttonText: 'Sign Up')
+
+                GestureDetector(
+                  onTap: (){
+                    if(_formKey.currentState?.validate() ?? false){}
+                  },
+                  child: const CustomButton(
+                      buttonText: 'Sign Up'),
+                )
               ],
             )),
       ),),

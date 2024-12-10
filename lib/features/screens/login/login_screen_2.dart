@@ -118,20 +118,21 @@ class _LoginScreen2State extends State<LoginScreen2> {
                   textAlign: TextAlign.center,
                   text: TextSpan(
                       children: [
+                        const TextSpan(
+
+                            text: 'Don’t have an account?',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                //fontSize: 18
+                            )
+                        ),
                         TextSpan(
                             recognizer: TapGestureRecognizer()..onTap = (){
                               Navigator.pushNamed(context,
                                   AppRouteStrings.signupScreen);
                             },
-                            text: 'Don’t have an account?',
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w400,
-                                //fontSize: 18
-                            )
-                        ),
-                         const TextSpan(
                             text: ' Sign up!',
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontWeight: FontWeight.w400,
                                 color: AppColors.nude
                             )
