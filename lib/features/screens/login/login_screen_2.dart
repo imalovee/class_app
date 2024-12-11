@@ -5,6 +5,7 @@ import 'package:class_app/shared/assets.dart';
 import 'package:class_app/shared/constants.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../shared/custom_button.dart';
@@ -20,9 +21,9 @@ class LoginScreen2 extends StatefulWidget {
 class _LoginScreen2State extends State<LoginScreen2> {
   TextEditingController _userNameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
-
   bool isChecked = false;
   final _formKey = GlobalKey<FormState>();
+  List? _errorMessage;
 
   @override
   void dispose(){
@@ -31,6 +32,43 @@ class _LoginScreen2State extends State<LoginScreen2> {
     _passwordController.dispose();
 
   }
+
+  String? _passwordValidator(String? input){
+    List _errors = [];
+    final smallLet = RegExp(r'[a-z]');
+    final capitalLet = RegExp(r'[A-Z]');
+    final numbers = RegExp(r'[0-9]');
+    final specialChars = RegExp(r'[!#$%&*+-/=?]');
+
+    if(!smallLet.hasMatch(input ?? "")){
+      _errors.add('password must contain small letters');
+    }
+    if(!capitalLet.hasMatch(input ?? "")){
+      _errors.add('password must contain capital letters');
+    }
+    if(!numbers.hasMatch(input ?? "")){
+      _errors.add('password must contain digits');
+    }
+    if(!specialChars.hasMatch(input ?? "")){
+      _errors.add('password must contain one special Characters');
+    }
+    if((input?? "").length < 6){
+      _errors.add('password must be longer than 6');
+    }
+    _errorMessage = null;
+    if(_errors.isEmpty){
+      setState(() {
+      });
+      return null;
+    }else{
+      _errorMessage = _errors;
+      setState(() {
+      });
+      return '';
+    }
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -74,6 +112,10 @@ class _LoginScreen2State extends State<LoginScreen2> {
                 ),
               const SizedBox(height: 36,),
                TextFormWidget(
+                 inputFormatter: [
+                   FilteringTextInputFormatter.deny('r[]'),
+                   FilteringTextInputFormatter.allow('r[a-z A-Z]')
+                 ],
                  title: 'User name',
                  controller:_userNameController ,
                ),
@@ -82,6 +124,18 @@ class _LoginScreen2State extends State<LoginScreen2> {
                 title: 'Password',
                 controller:_passwordController,
               ),
+              if(_errorMessage != null)
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: List<Widget>.from((_errorMessage ?? []).map((e){
+                      return Text(e, style: const TextStyle(
+                          color: Colors.red,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 10
+                      ),);
+                    }))
+                ),
+              const SizedBox(height: 6,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
