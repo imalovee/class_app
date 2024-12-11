@@ -121,6 +121,9 @@ class _LoginScreen2State extends State<LoginScreen2> {
                ),
               const SizedBox(height: 46,),
               TextFormWidget(
+                validate: (userInput){
+                  return _passwordValidator(userInput);
+                },
                 title: 'Password',
                 controller:_passwordController,
               ),
@@ -163,9 +166,14 @@ class _LoginScreen2State extends State<LoginScreen2> {
                 ],
               ),
               const SizedBox(height: 36,),
-              const CustomButton(
-                buttonText: 'Login',
-              ),
+               GestureDetector(
+                 onTap: (){
+                   if(_formKey.currentState?.validate() ?? false){}
+                 },
+                 child: const CustomButton(
+                  buttonText: 'Login',
+                               ),
+               ),
               const SizedBox(height: 20,),
               Center(
                 child: RichText(
