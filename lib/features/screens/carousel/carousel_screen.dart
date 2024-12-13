@@ -32,6 +32,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
       body: Column(
         children: [
           CarouselSlider.builder(
+            carouselController: _carouselController,
               itemCount: imgList.length,
               itemBuilder: (BuildContext context, int index, int realIndex){
                 var images = imgList[index];
@@ -83,7 +84,24 @@ class _CarouselScreenState extends State<CarouselScreen> {
                 pauseAutoPlayOnTouch: false
               ))
         ]
-      )
+      ),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          FloatingActionButton(
+              onPressed: (){
+                _carouselController.startAutoPlay();
+              },
+            child: const Icon(Icons.play_arrow),
+          ),
+          FloatingActionButton(
+            onPressed: (){
+              _carouselController.stopAutoPlay();
+            },
+            child: const Icon(Icons.stop),
+          )
+        ],
+      ),
     ) ;
   }
 }

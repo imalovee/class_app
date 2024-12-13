@@ -12,6 +12,7 @@ class _GridViewScreenState extends State<GridViewScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text('Grid View', style: TextStyle(
           fontWeight: FontWeight.bold
         ),),

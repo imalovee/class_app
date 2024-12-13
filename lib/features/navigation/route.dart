@@ -3,6 +3,7 @@ import 'package:class_app/features/screens/Signup/signup_screen.dart';
 import 'package:class_app/features/screens/home-screen.dart';
 import 'package:class_app/features/screens/login/login_screen.dart';
 import 'package:class_app/features/screens/manual_input-screen.dart';
+import 'package:class_app/features/screens/tabbar/tabbar_screen.dart';
 import 'package:class_app/features/screens/user_input_screen.dart';
 import 'package:class_app/features/screens/welcome_screen.dart';
 import 'package:class_app/layouts/grid-view.dart';
@@ -55,6 +56,10 @@ class AppRoutes{
       case AppRouteStrings.carouselScreen:
         return CupertinoPageRoute(builder: (_){
           return  const CarouselScreen();
+        });
+      case AppRouteStrings.tabBarScreen:
+        return CupertinoPageRoute(builder: (_){
+          return  const TabbarScreen();
         });
 
       default:

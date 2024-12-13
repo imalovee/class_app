@@ -92,6 +92,15 @@ class HomeScreen extends StatelessWidget {
                 );
               },
               child: const Text('Carousel Screen')),
+          TextButton(
+              onPressed: (){
+                Navigator.pushNamed(
+                  context,
+                  AppRouteStrings.tabBarScreen,
+
+                );
+              },
+              child: const Text('TabBar Screen')),
         ],
       ),)),
     );
