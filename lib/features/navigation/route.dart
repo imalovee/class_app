@@ -9,6 +9,7 @@ import 'package:class_app/layouts/grid-view.dart';
 import 'package:class_app/layouts/list_view.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../screens/carousel/carousel_screen.dart';
 import '../screens/login/login_screen_2.dart';
 
 class AppRoutes{
@@ -50,6 +51,10 @@ class AppRoutes{
       case AppRouteStrings.welcomeScreen:
         return CupertinoPageRoute(builder: (_){
           return  const WelcomeScreen();
+        });
+      case AppRouteStrings.carouselScreen:
+        return CupertinoPageRoute(builder: (_){
+          return  const CarouselScreen();
         });
 
       default:
