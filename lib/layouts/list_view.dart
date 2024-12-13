@@ -44,6 +44,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text('States & Capital', style: TextStyle(
             fontWeight: FontWeight.bold,
         ),),
