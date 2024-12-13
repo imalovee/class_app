@@ -73,24 +73,7 @@ class HomeScreen extends StatelessWidget {
                 );
               },
               child: const Text('Login Screen')),
-          TextButton(
-              onPressed: (){
-                Navigator.pushNamed(
-                  context,
-                  AppRouteStrings.loginScreen2,
 
-                );
-              },
-              child: const Text('Login_Screen2')),
-          TextButton(
-              onPressed: (){
-                Navigator.pushNamed(
-                  context,
-                  AppRouteStrings.signupScreen,
-
-                );
-              },
-              child: const Text('Signup Screen')),
           TextButton(
               onPressed: (){
                 Navigator.pushNamed(
@@ -100,6 +83,15 @@ class HomeScreen extends StatelessWidget {
                 );
               },
               child: const Text('Welcome Screen')),
+          TextButton(
+              onPressed: (){
+                Navigator.pushNamed(
+                  context,
+                  AppRouteStrings.carouselScreen,
+
+                );
+              },
+              child: const Text('Carousel Screen')),
         ],
       ),)),
     );
