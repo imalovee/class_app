@@ -101,6 +101,15 @@ class HomeScreen extends StatelessWidget {
                 );
               },
               child: const Text('TabBar Screen')),
+          TextButton(
+              onPressed: (){
+                Navigator.pushNamed(
+                  context,
+                  AppRouteStrings.calculateScreen,
+
+                );
+              },
+              child: const Text('Calculate Screen')),
         ],
       ),)),
     );

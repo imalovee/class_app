@@ -13,4 +13,8 @@ class AppAssets{
   static const String fbSvg = "${_appBase}fb.svg";
   static const String lnSvg = "${_appBase}ln.svg";
   static const String ggSvg = "${_appBase}gg.svg";
+  static const String maleSvg = "${_appBase}male.svg";
+  static const String femaleSvg = "${_appBase}female.svg";
+
 }
+
