@@ -10,4 +10,5 @@ class AppRouteStrings{
   static const String welcomeScreen= "/welcome_screen";
   static const String carouselScreen = "/carousel_screen";
   static const String tabBarScreen = "/tabBar_screen";
+  static const String calculateScreen = "/calculate_screen";
 }

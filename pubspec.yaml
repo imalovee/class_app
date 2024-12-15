@@ -97,5 +97,11 @@ flutter:
       fonts:
         - asset: assets/fonts/inter/Inter_18pt-Black.ttf
           weight: 200
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins_font/Poppins-Regular.ttf
+          weight: 600
+        - asset: assets/fonts/Poppins_font/Poppins-Regular.ttf
+          weight: 400
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package

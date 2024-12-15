@@ -1,5 +1,6 @@
 import 'package:class_app/features/navigation/route_strings.dart';
 import 'package:class_app/features/screens/Signup/signup_screen.dart';
+import 'package:class_app/features/screens/bmiCalculator/calculate_screen.dart';
 import 'package:class_app/features/screens/home-screen.dart';
 import 'package:class_app/features/screens/login/login_screen.dart';
 import 'package:class_app/features/screens/manual_input-screen.dart';
@@ -60,6 +61,10 @@ class AppRoutes{
       case AppRouteStrings.tabBarScreen:
         return CupertinoPageRoute(builder: (_){
           return  const TabbarScreen();
+        });
+      case AppRouteStrings.calculateScreen:
+        return CupertinoPageRoute(builder: (_){
+          return  const CalculateScreen();
         });
 
       default:

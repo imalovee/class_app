@@ -25,3 +25,10 @@ TextStyle interTextStyle = const TextStyle(
     //fontWeight: FontWeight.w400,
     color: AppColors.white
 );
+
+TextStyle poppinsTextStyle = const TextStyle(
+    fontFamily: 'Poppins',
+    // fontSize: 16,
+    //fontWeight: FontWeight.w400,
+    color: AppColors.white
+);
