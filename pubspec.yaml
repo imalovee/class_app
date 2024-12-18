@@ -38,6 +38,7 @@ dependencies:
   flutter_svg: ^2.0.16
   carousel_slider: ^5.0.0
   cached_network_image: ^3.4.1
+  circular_progress_stack: ^0.0.4
 
 
 dev_dependencies:
