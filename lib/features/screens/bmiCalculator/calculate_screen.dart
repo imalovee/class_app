@@ -1,3 +1,6 @@
+import 'package:class_app/features/navigation/route_strings.dart';
+import 'package:class_app/features/screens/bmiCalculator/bmi_calculator_class.dart';
+import 'package:class_app/features/screens/bmiCalculator/result_screen.dart';
 import 'package:class_app/shared/app_colors.dart';
 import 'package:class_app/shared/assets.dart';
 import 'package:class_app/shared/constants.dart';
@@ -15,23 +18,13 @@ class CalculateScreen extends StatefulWidget {
 
 class _CalculateScreenState extends State<CalculateScreen> {
 
-  int sliderValue = 20;
+  int sliderValue = 180;
   int _age = 23;
   int _weight = 70;
+  bool isMaleSelected = false;
+  bool isFemaleSelected = false;
 
-  // void increaeValue(){
-  //   setState(() {
-  //     _value++;
-  //   });
-  // }
-  //
-  // void decreaseValue(){
-  //   setState(() {
-  //     _value--;
-  //   });
-  // }
-
-  @override
+    @override
   Widget build(BuildContext context) {
     return   Scaffold(
       backgroundColor: AppColors.blueGrey,
@@ -51,45 +44,65 @@ class _CalculateScreenState extends State<CalculateScreen> {
                Row(
                  children: [
                    Expanded(
-                     child: Container(
-                       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 18),
-                       decoration: BoxDecoration(
-                         color: AppColors.deepBlue,
-                         borderRadius: BorderRadius.circular(12)
-                       ),
-                       child: Row(
-                         children: [
-                           const Icon(Icons.male, color: AppColors.white,),
-                            SizedBox(width: 12,),
-                            Text('Male',
-                              style: poppinsTextStyle.copyWith(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 15
-                              ),)
-                         ],
+                     child: GestureDetector(
+                        onTap: (){
+                          setState(() {
+                            if(!isMaleSelected){
+                              isMaleSelected = true;
+                              isFemaleSelected = false;
+                            }
+                          });
+                        },
+                       child: Container(
+                         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 18),
+                         decoration: BoxDecoration(
+                           color: isMaleSelected? AppColors.oceanBlue : AppColors.deepBlue ,
+                           borderRadius: BorderRadius.circular(12)
+                         ),
+                         child: Row(
+                           children: [
+                             const Icon(Icons.male, color: AppColors.white,),
+                              SizedBox(width: 12,),
+                              Text('Male',
+                                style: poppinsTextStyle.copyWith(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 15
+                                ),)
+                           ],
+                         ),
                        ),
                      ),
                    ),
                    SizedBox(width: 16,),
                    Expanded(
-                     child: Container(
-                       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 18),
-                       decoration: BoxDecoration(
-                           color: AppColors.white,
-                           borderRadius: BorderRadius.circular(12)
-                       ),
-                       child: Row(
-                         //mainAxisAlignment: MainAxisAlignment.center,
-                         children: [
-                           const Icon(Icons.female, color: AppColors.deepBlue,),
-                           SizedBox(width: 12,),
-                           Text('Female',
-                             style: poppinsTextStyle.copyWith(
-                                 fontWeight: FontWeight.w400,
-                                 fontSize: 15,
-                               color: AppColors.deepBlue
-                             ),)
-                         ],
+                     child: GestureDetector(
+                       onTap: (){
+                         setState(() {
+                            if(!isFemaleSelected){
+                              isFemaleSelected = true;
+                              isMaleSelected = false;
+                            }
+                         });
+                       },
+                       child: Container(
+                         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 18),
+                         decoration: BoxDecoration(
+                             color: isFemaleSelected? AppColors.lightNude: AppColors.white,
+                             borderRadius: BorderRadius.circular(12)
+                         ),
+                         child: Row(
+                           //mainAxisAlignment: MainAxisAlignment.center,
+                           children: [
+                             const Icon(Icons.female, color: AppColors.deepBlue,),
+                             SizedBox(width: 12,),
+                             Text('Female',
+                               style: poppinsTextStyle.copyWith(
+                                   fontWeight: FontWeight.w400,
+                                   fontSize: 15,
+                                 color: AppColors.deepBlue
+                               ),)
+                           ],
+                         ),
                        ),
                      ),
                    )
@@ -100,7 +113,7 @@ class _CalculateScreenState extends State<CalculateScreen> {
                  children: [
                    Container(
                      height: 400,
-                     padding: const EdgeInsets.fromLTRB(8, 8, 16, 8),
+                     padding: const EdgeInsets.fromLTRB(0, 8, 12, 8),
                      decoration: BoxDecoration(
                        color: AppColors.white,
                        borderRadius: BorderRadius.circular(12)
@@ -121,15 +134,15 @@ class _CalculateScreenState extends State<CalculateScreen> {
                                      sliderValue = newValue.round();
                                    });
                                  },
-                               max: 100.0,
-                               min: 0.0,
+                               max: 250,
+                               min: 100,
                                divisions: null,
                                activeColor: AppColors.deepBlue,
                                inactiveColor: AppColors.blueGrey,
                              ),
                            ),
                          ),
-                         SizedBox(width: 12,),
+                         //SizedBox(width: 12,),
                          Column(
                            mainAxisAlignment: MainAxisAlignment.center,
                            children: [
@@ -155,7 +168,7 @@ class _CalculateScreenState extends State<CalculateScreen> {
                      child: Column(
                        children: [
                      Container(
-                     padding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+                     padding: EdgeInsets.symmetric(vertical: 12, horizontal: 8),
                      decoration: BoxDecoration(
                        color: AppColors.white,
                        borderRadius: BorderRadius.circular(12),
@@ -201,7 +214,7 @@ class _CalculateScreenState extends State<CalculateScreen> {
                         height: 16,
                       ),
                          Container(
-                           padding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+                           padding: EdgeInsets.symmetric(vertical: 12, horizontal: 8),
                            decoration: BoxDecoration(
                              color: AppColors.white,
                              borderRadius: BorderRadius.circular(12),
@@ -249,19 +262,33 @@ class _CalculateScreenState extends State<CalculateScreen> {
                    ]
                    ) ,
                    SizedBox(height: 36,)      ,
-                   Container(
-                      width: MediaQuery.of(context).size.width,
-                     padding: const EdgeInsets.symmetric(vertical: 12),
-                     decoration: BoxDecoration(
-                       borderRadius: BorderRadius.circular(12),
-                       color: AppColors.deepBlue
+                   GestureDetector(
+                     onTap: (){
+                       BmiCalculator calc = BmiCalculator(weight: _weight, height: sliderValue);
+                       print("Height passed: $sliderValue");
+                       Navigator.pushNamed(context,
+                          AppRouteStrings.resultScreen,
+                         arguments: ResultsParams(
+                           bmiResult: calc.getResults(),
+                           bmiInterpretation: calc.interpretation(),
+                           bmiExplanations: calc.getExplanations(),
+                         )
+                       );
+                     },
+                     child: Container(
+                        width: MediaQuery.of(context).size.width,
+                       padding: const EdgeInsets.symmetric(vertical: 12),
+                       decoration: BoxDecoration(
+                         borderRadius: BorderRadius.circular(12),
+                         color: AppColors.deepBlue
+                       ),
+                       child: Text("Let's Go", style: poppinsTextStyle.copyWith(
+                         color: AppColors.white,
+                         fontSize: 15,
+                         fontWeight: FontWeight.w400
+                       ),
+                       textAlign: TextAlign.center,),
                      ),
-                     child: Text("Let's Go", style: poppinsTextStyle.copyWith(
-                       color: AppColors.white,
-                       fontSize: 15,
-                       fontWeight: FontWeight.w400
-                     ),
-                     textAlign: TextAlign.center,),
                    )
              ],
            ),
@@ -269,5 +296,6 @@ class _CalculateScreenState extends State<CalculateScreen> {
      ),
     );
   }
-}
+
+ }
 
