@@ -6,6 +6,7 @@ import 'package:class_app/features/screens/future/future_builder_screen.dart';
 import 'package:class_app/features/screens/home-screen.dart';
 import 'package:class_app/features/screens/login/login_screen.dart';
 import 'package:class_app/features/screens/manual_input-screen.dart';
+import 'package:class_app/features/screens/streams/stream_builder_screen.dart';
 import 'package:class_app/features/screens/tabbar/tabbar_screen.dart';
 import 'package:class_app/features/screens/user_input_screen.dart';
 import 'package:class_app/features/screens/welcome_screen.dart';
@@ -77,6 +78,10 @@ class AppRoutes{
       case AppRouteStrings.futureScreen:
         return CupertinoPageRoute(builder: (_){
           return  const FutureBuilderScreen();
+        });
+      case AppRouteStrings.futureScreen:
+        return CupertinoPageRoute(builder: (_){
+          return  const StreamBuilderScreen();
         });
 
       default:

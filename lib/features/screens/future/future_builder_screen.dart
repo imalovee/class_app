@@ -22,7 +22,7 @@ class _FutureBuilderScreenState extends State<FutureBuilderScreen> {
             if(snapshot.connectionState == ConnectionState.waiting){
               return const Center(child: CircularProgressIndicator(),);
             }
-            else if(snapshot.hasError){
+            else if(snapshot.data?.isEmpty ?? false){
                WidgetsBinding.instance.addPostFrameCallback((a){
                 ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
