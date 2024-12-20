@@ -110,6 +110,15 @@ class HomeScreen extends StatelessWidget {
                 );
               },
               child: const Text('Calculate Screen')),
+          TextButton(
+              onPressed: (){
+                Navigator.pushNamed(
+                  context,
+                  AppRouteStrings.futureScreen,
+
+                );
+              },
+              child: const Text('Future Screen')),
         ],
       ),)),
     );
