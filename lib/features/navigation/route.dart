@@ -2,9 +2,11 @@ import 'package:class_app/features/navigation/route_strings.dart';
 import 'package:class_app/features/screens/Signup/signup_screen.dart';
 import 'package:class_app/features/screens/bmiCalculator/calculate_screen.dart';
 import 'package:class_app/features/screens/bmiCalculator/result_screen.dart';
+import 'package:class_app/features/screens/future/future_builder_screen.dart';
 import 'package:class_app/features/screens/home-screen.dart';
 import 'package:class_app/features/screens/login/login_screen.dart';
 import 'package:class_app/features/screens/manual_input-screen.dart';
+import 'package:class_app/features/screens/streams/stream_builder_screen.dart';
 import 'package:class_app/features/screens/tabbar/tabbar_screen.dart';
 import 'package:class_app/features/screens/user_input_screen.dart';
 import 'package:class_app/features/screens/welcome_screen.dart';
@@ -72,6 +74,14 @@ class AppRoutes{
           return   ResultScreen(
               resultsParams: settings.arguments as ResultsParams,
           );
+        });
+      case AppRouteStrings.futureScreen:
+        return CupertinoPageRoute(builder: (_){
+          return  const FutureBuilderScreen();
+        });
+      case AppRouteStrings.futureScreen:
+        return CupertinoPageRoute(builder: (_){
+          return  const StreamBuilderScreen();
         });
 
       default:

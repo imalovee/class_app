@@ -12,4 +12,6 @@ class AppRouteStrings{
   static const String tabBarScreen = "/tabBar_screen";
   static const String calculateScreen = "/calculate_screen";
   static const String resultScreen = "/result_screen";
+  static const String futureScreen = "/future_screen";
+  static const String streamScreen = "/stream_screen";
 }
