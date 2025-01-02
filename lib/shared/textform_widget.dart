@@ -11,7 +11,7 @@ class TextFormWidget extends StatelessWidget {
     this.obscureText = false,
     this.validate,
     required this.title,
-    this.inputFormatter,
+    this.inputFormatter, this.onchanged,
   });
 
   final String title;
@@ -19,6 +19,7 @@ class TextFormWidget extends StatelessWidget {
   final bool obscureText;
   final String? Function(String?)? validate;
   final List<TextInputFormatter>? inputFormatter;
+  final void Function(String?)? onchanged;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -30,6 +31,7 @@ class TextFormWidget extends StatelessWidget {
             )),
         const SizedBox(height: 8,),
         TextFormField(
+          onChanged: onchanged ,
           controller: controller,
           cursorColor: AppColors.appBlue,
           validator: validate,

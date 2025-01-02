@@ -1,3 +1,7 @@
+import 'package:class_app/features/navigation/route.dart';
+import 'package:class_app/features/navigation/route_strings.dart';
+import 'package:class_app/features/screens/localStorage/shared_preference_screen.dart';
+import 'package:class_app/features/screens/user_input_screen.dart';
 import 'package:class_app/shared/custom_button.dart';
 import 'package:class_app/shared/textform_widget.dart';
 import 'package:flutter/material.dart';
@@ -16,14 +20,26 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _fullnameController = TextEditingController();
-  TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _fullnameController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
   List? errorMessage;
+  String? userFullName;
+  String? emailAddress;
+  String? phoneNumber;
+  final localStorage = LocalStorageFile();
+
+  @override
+  void initState(){
+    super.initState();
+  _fullnameController.text = localStorage.getUserName() ?? "";
+ _emailController.text = localStorage.getEmail() ?? "";
+  _phoneController.text = localStorage.getNumber() ?? "";
+  }
 
   @override
   void dispose(){
@@ -111,10 +127,15 @@ class _SignupScreenState extends State<SignupScreen> {
                 const SizedBox(height: 46,),
                 TextFormWidget(
                     controller: _fullnameController,
-                    title: 'Full Name',
+                    title: 'Full Name ',
                   inputFormatter: [
                     FilteringTextInputFormatter.deny('r[]')
                   ],
+                  onchanged: (_){
+                     setState(() {
+                      userFullName = _fullnameController.text;
+                     });
+                  },
                 ),
                 const SizedBox(height: 26,),
                 TextFormWidget(
@@ -157,8 +178,16 @@ class _SignupScreenState extends State<SignupScreen> {
                 const SizedBox(height: 36,),
 
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
                     if(_formKey.currentState?.validate() ?? false){}
+                   await localStorage.saveName(_fullnameController.text);
+                    Navigator.pushNamed(context,
+                      AppRouteStrings.userData,
+                      arguments: UserDetails(
+                          savedName: userFullName ?? "",
+                          savedEmail: emailAddress ?? "",
+                          )
+                    );
                   },
                   child: const CustomButton(
                       buttonText: 'Sign Up'),

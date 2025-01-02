@@ -14,4 +14,5 @@ class AppRouteStrings{
   static const String resultScreen = "/result_screen";
   static const String futureScreen = "/future_screen";
   static const String streamScreen = "/stream_screen";
+  static const String sharedPreferenceScreen = "/sharedPreference_screen";
 }

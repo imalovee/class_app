@@ -1,10 +1,13 @@
 import 'package:class_app/features/navigation/route.dart';
 import 'package:class_app/features/navigation/route_strings.dart';
+import 'package:class_app/features/screens/localStorage/shared_preference_screen.dart';
 import 'package:class_app/layouts/grid-view.dart';
 import 'package:class_app/layouts/list_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  LocalStorageFile().initialize();
   runApp(const MyApp());
 }
 
