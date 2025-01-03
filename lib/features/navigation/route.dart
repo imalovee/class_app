@@ -4,6 +4,7 @@ import 'package:class_app/features/screens/bmiCalculator/calculate_screen.dart';
 import 'package:class_app/features/screens/bmiCalculator/result_screen.dart';
 import 'package:class_app/features/screens/future/future_builder_screen.dart';
 import 'package:class_app/features/screens/home-screen.dart';
+import 'package:class_app/features/screens/localStorage/shared_preference_screen.dart';
 import 'package:class_app/features/screens/login/login_screen.dart';
 import 'package:class_app/features/screens/manual_input-screen.dart';
 import 'package:class_app/features/screens/streams/stream_builder_screen.dart';
@@ -39,7 +40,10 @@ class AppRoutes{
         });
       case AppRouteStrings.userData:
         return CupertinoPageRoute(builder: (_){
-          return  const UserInputScreen();
+          return   UserInputScreen(
+            userDetailsArg: settings.arguments as UserDetails,
+
+          );
         });
       case AppRouteStrings.loginScreen:
         return CupertinoPageRoute(builder: (_){
@@ -79,9 +83,13 @@ class AppRoutes{
         return CupertinoPageRoute(builder: (_){
           return  const FutureBuilderScreen();
         });
-      case AppRouteStrings.futureScreen:
+      case AppRouteStrings.streamScreen:
         return CupertinoPageRoute(builder: (_){
           return  const StreamBuilderScreen();
+        });
+      case AppRouteStrings.sharedPreferenceScreen:
+        return CupertinoPageRoute(builder: (_){
+          return  const SharedPreferenceScreen();
         });
 
       default:

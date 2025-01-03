@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class UserInputScreen extends StatefulWidget {
-  const UserInputScreen({super.key});
+  const UserInputScreen({super.key, required this.userDetailsArg});
+
+ final UserDetails userDetailsArg;
 
   @override
   State<UserInputScreen> createState() => _UserInputScreenState();
@@ -18,6 +20,7 @@ class _UserInputScreenState extends State<UserInputScreen> {
   final _formKey = GlobalKey<FormState>();
   bool isVisible = false;
    List? errorMessage;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,6 +43,11 @@ class _UserInputScreenState extends State<UserInputScreen> {
                     FilteringTextInputFormatter.allow(RegExp(r'[a-z A-Z]'))
                  ],
                  controller: nameController ,
+                 onchanged: (name){
+                  setState(() {
+                    name = widget.userDetailsArg.savedName;
+                  });
+                 },
               ),
                const SizedBox(height: 20,),
                 TextFieldItems(
@@ -137,7 +145,17 @@ class _UserInputScreenState extends State<UserInputScreen> {
 
 
 
+class UserDetails {
+  final String savedName;
+  final String savedEmail;
 
+
+  UserDetails( {
+    required this.savedName,
+    required this.savedEmail,
+
+});
+}
 
 class TextFieldItems extends StatelessWidget {
   const TextFieldItems({
@@ -148,7 +166,7 @@ class TextFieldItems extends StatelessWidget {
     required this.keyboardType,
     this.validator,
     this.inputFormatter,
-    required this.controller,
+    required this.controller, this.onchanged,
   });
 
   final String labelText;
@@ -159,6 +177,7 @@ class TextFieldItems extends StatelessWidget {
   final String? Function(String?)? validator;
   final List<TextInputFormatter>? inputFormatter;
   final TextEditingController controller;
+  final void Function(String?)? onchanged;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -167,6 +186,7 @@ class TextFieldItems extends StatelessWidget {
       textCapitalization: TextCapitalization.words,
       textInputAction: TextInputAction.done,
       obscureText: obscureText,
+      onChanged: onchanged,
       inputFormatters: inputFormatter,
       decoration:  InputDecoration(
         label: Text(labelText),
