@@ -13,7 +13,8 @@ This app demonstrates hands-on all the things learnt in the bootcamp
 ## Screenshots
     ![Calculator screen](assets/images/bmiData.jpeg)
     ![Result screen](assets/images/bmiResult.jpeg)
-
+## Image Link
+![BMI screens](https://drive.google.com/drive/folders/1um8ku-GDE2gkWiyzZz0hjKgXX9Q6xD0H?usp=sharing)
 
 ## Getting Started
 
